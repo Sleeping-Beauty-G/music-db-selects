@@ -23,8 +23,7 @@ WHERE name NOT LIKE '% %'; -- Только исполнители с одним 
 --  Треки, содержащие «мой» или «my»
 SELECT title -- Выбираем называние треков
 FROM Track -- Из таблицы track
-WHERE title ILIKE '%my%' OR title ILIKE '%мой%'; -- Оставляем треки, где в названии есть "my" или  "мой"
-
+WHERE title ~* '\m(my|мой)\M'; -- ищем либо "my", либо "мой"
 --  Количество исполнителей в каждом жанре
 SELECT g.name AS genre, COUNT(ag.artist_id) AS artist_count -- Выбираем название жанра, сколько артистов связано с этим жанром
 FROM Genre g -- -- Из таблицы genre
